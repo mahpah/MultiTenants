@@ -11,9 +11,10 @@ using System;
 namespace MultiTenants.Migrations
 {
     [DbContext(typeof(TenantCatalogDbContext))]
-    partial class TenantCatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171228164712_Tenant_AddState")]
+    partial class Tenant_AddState
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

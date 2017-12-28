@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MultiTenants.Data;
 using MultiTenants.Data.Models;
+using MultiTenants.Tenant.Model;
 
 namespace MultiTenants.Controllers
 {
@@ -12,10 +13,12 @@ namespace MultiTenants.Controllers
     public class ValuesController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly AppTenant _tenant;
 
-        public ValuesController(ApplicationDbContext dbContext)
+        public ValuesController(ApplicationDbContext dbContext, AppTenant tenant)
         {
             _dbContext = dbContext;
+            _tenant = tenant;
         }
 
         // GET api/values
@@ -55,6 +58,15 @@ namespace MultiTenants.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet("whoami")]
+        public IActionResult GetTenant()
+        {
+            if (_tenant is null)
+                return NotFound();
+
+            return Ok(_tenant);
         }
     }
 }
