@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using MultiTenants.Tenant.Model;
 
 namespace MultiTenants.Tenant.Interface
 {

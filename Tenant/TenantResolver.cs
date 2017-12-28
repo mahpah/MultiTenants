@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using MultiTenants.Tenant.Interface;
+using MultiTenants.Tenant.Model;
 
 namespace MultiTenants.Tenant
 {

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MultiTenants.Data;
 using MultiTenants.Tenant;
+using MultiTenants.Tenant.Model;
+using MultiTenants.Utils;
 
 namespace MultiTenants
 {
@@ -30,7 +27,10 @@ namespace MultiTenants
             services.AddMultiTenantsSupport();
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>();
+
+            services.AddDbContext<TenantCatalogDbContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("TenantCatalog")));
             services.AddMvc();
+            services.AddTransient<AppInitUtils>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

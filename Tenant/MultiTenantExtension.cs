@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MultiTenants.Tenant.Interface;
+using MultiTenants.Tenant.Model;
 
 namespace MultiTenants.Tenant
 {

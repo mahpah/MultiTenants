@@ -1,8 +1,8 @@
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using MultiTenants.Data.Models;
 using MultiTenants.Tenant;
 using MultiTenants.Tenant.Interface;
+using MultiTenants.Tenant.Model;
 
 namespace MultiTenants.Data
 {
@@ -15,6 +15,7 @@ namespace MultiTenants.Data
         public ApplicationDbContext(ITenantResolver tenantResolver)
         {
             _tenant = tenantResolver.Resolve().GetAwaiter().GetResult();
+            // TODO improve tenant lifecycle
             Database.EnsureCreated();
         }
 
